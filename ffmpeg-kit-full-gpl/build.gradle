@@ -1,13 +1,11 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "33.0.0"
+    compileSdkVersion 32
 
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 33
+        targetSdkVersion 32
         versionCode 600
         versionName "6.0.0"
     }
@@ -15,13 +13,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -35,26 +27,4 @@ dependencies {
     implementation(name: 'ffmpeg-kit-full-gpl', ext: 'aar')
     implementation 'com.arthenica:smart-exception-java:0.2.1'
     implementation 'com.arthenica:smart-exception-common:0.2.1'
-}
-
-// Package the prebuilt AAR
-android.libraryVariants.all { variant ->
-    if (variant.buildType.name == 'release') {
-        variant.outputs.all {
-            outputFileName = "ffmpeg-kit-full-gpl-6.0.0.aar"
-        }
-    }
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.github.StudioLapsus'
-                artifactId = 'ffmpeg-kit-android'
-                version = '6.0.0'
-            }
-        }
-    }
 } 
