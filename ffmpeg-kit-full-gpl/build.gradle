@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
-    namespace 'com.arthenica.ffmpegkit'
-    compileSdkVersion 35
-    buildToolsVersion "35.0.0"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.0"
 
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 34
+        targetSdkVersion 33
         versionCode 600
         versionName "6.0.0"
     }
@@ -15,7 +15,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -31,6 +31,12 @@ repositories {
     }
 }
 
+dependencies {
+    implementation(name: 'ffmpeg-kit-full-gpl', ext: 'aar')
+    implementation 'com.arthenica:smart-exception-java:0.2.1'
+    implementation 'com.arthenica:smart-exception-common:0.2.1'
+}
+
 // Package the prebuilt AAR
 android.libraryVariants.all { variant ->
     if (variant.buildType.name == 'release') {
@@ -39,15 +45,6 @@ android.libraryVariants.all { variant ->
         }
     }
 }
-
-dependencies {
-    implementation(name: 'ffmpeg-kit-full-gpl', ext: 'aar')
-    implementation 'com.arthenica:smart-exception-java:0.2.1'
-    implementation 'com.arthenica:smart-exception-common:0.2.1'
-}
-
-// This is required for JitPack
-apply plugin: 'maven-publish'
 
 afterEvaluate {
     publishing {
