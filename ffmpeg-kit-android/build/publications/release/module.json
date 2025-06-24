@@ -3,7 +3,7 @@
   "component": {
     "group": "com.github.StudioLapsus",
     "module": "ffmpeg-kit-android",
-    "version": "6.0.6",
+    "version": "6.0.8",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -24,8 +24,8 @@
       },
       "files": [
         {
-          "name": "ffmpeg-kit-android-6.0.6.aar",
-          "url": "ffmpeg-kit-android-6.0.6.aar",
+          "name": "ffmpeg-kit-android-6.0.8.aar",
+          "url": "ffmpeg-kit-android-6.0.8.aar",
           "size": 1300,
           "sha512": "8139e0d68421f239171fe90e002f02f01958c740c1055b354f4041f155092efc8579bf5577f636bf7170647bf088ad3cf5e73ee618f3e00de9743b1a190dee09",
           "sha256": "44331b5599b3c00993db1e8bc795e8c28f53580de1468afa3523bbfd59e52f6d",
@@ -44,23 +44,6 @@
       },
       "dependencies": [
         {
-          "group": null,
-          "module": "ffmpeg-kit",
-          "excludes": [
-            {
-              "group": "*",
-              "module": "*"
-            }
-          ],
-          "thirdPartyCompatibility": {
-            "artifactSelector": {
-              "name": "ffmpeg-kit",
-              "type": "aar",
-              "extension": "aar"
-            }
-          }
-        },
-        {
           "group": "com.arthenica",
           "module": "smart-exception-java",
           "version": {
@@ -77,8 +60,8 @@
       ],
       "files": [
         {
-          "name": "ffmpeg-kit-android-6.0.6.aar",
-          "url": "ffmpeg-kit-android-6.0.6.aar",
+          "name": "ffmpeg-kit-android-6.0.8.aar",
+          "url": "ffmpeg-kit-android-6.0.8.aar",
           "size": 1300,
           "sha512": "8139e0d68421f239171fe90e002f02f01958c740c1055b354f4041f155092efc8579bf5577f636bf7170647bf088ad3cf5e73ee618f3e00de9743b1a190dee09",
           "sha256": "44331b5599b3c00993db1e8bc795e8c28f53580de1468afa3523bbfd59e52f6d",

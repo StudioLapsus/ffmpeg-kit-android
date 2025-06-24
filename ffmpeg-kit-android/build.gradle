@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 24
         targetSdkVersion 32
-        versionCode 606
-        versionName "6.0.6"
+        versionCode 608
+        versionName "6.0.8"
     }
 
     buildTypes {
@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-    implementation(name: 'ffmpeg-kit', ext: 'aar')
+    compileOnly(name: 'ffmpeg-kit', ext: 'aar')
     implementation 'com.arthenica:smart-exception-java:0.2.1'
     implementation 'com.arthenica:smart-exception-common:0.2.1'
 }
@@ -38,7 +38,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.StudioLapsus'
                 artifactId = 'ffmpeg-kit-android'
-                version = '6.0.6'
+                version = '6.0.8'
                 
                 pom {
                     name = 'FFmpeg Kit Android'
