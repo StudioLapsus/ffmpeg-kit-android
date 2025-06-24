@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 24
         targetSdkVersion 32
-        versionCode 608
-        versionName "6.0.8"
+        versionCode 609
+        versionName "6.0.9"
     }
 
     buildTypes {
@@ -17,6 +17,8 @@ android {
             minifyEnabled false
         }
     }
+    
+
 }
 
 repositories {
@@ -26,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(name: 'ffmpeg-kit', ext: 'aar')
+    api(name: 'ffmpeg-kit', ext: 'aar')
     implementation 'com.arthenica:smart-exception-java:0.2.1'
     implementation 'com.arthenica:smart-exception-common:0.2.1'
 }
@@ -38,7 +40,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.StudioLapsus'
                 artifactId = 'ffmpeg-kit-android'
-                version = '6.0.8'
+                version = '6.0.9'
                 
                 pom {
                     name = 'FFmpeg Kit Android'
@@ -69,7 +71,7 @@ afterEvaluate {
                 pom.withXml {
                     def dependenciesNode = asNode().dependencies[0]
                     if (dependenciesNode != null) {
-                        // Remove the ffmpeg-kit dependency that has no groupId
+                        // Remove the ffmpeg-kit dependency that has no groupId - it's bundled in the AAR
                         def toRemove = dependenciesNode.dependency.findAll { dep ->
                             dep.artifactId?.text() == 'ffmpeg-kit' && !dep.groupId?.text()
                         }
