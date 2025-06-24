@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
+    namespace 'com.arthenica.ffmpegkit'
     compileSdkVersion 32
 
     defaultConfig {
@@ -24,7 +26,20 @@ repositories {
 }
 
 dependencies {
-    implementation(name: 'ffmpeg-kit-full-gpl', ext: 'aar')
+    implementation(name: 'ffmpeg-kit', ext: 'aar')
     implementation 'com.arthenica:smart-exception-java:0.2.1'
     implementation 'com.arthenica:smart-exception-common:0.2.1'
-} 
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.StudioLapsus'
+                artifactId = 'ffmpeg-kit-full-gpl'
+                version = '6.0.0'
+            }
+        }
+    }
+}

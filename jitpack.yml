@@ -1,4 +1,11 @@
 jdk:
   - openjdk11
+env:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 before_install:
-  - ./gradlew --version 
+  - chmod +x gradlew
+install:
+  - echo "Using Gradle wrapper with version:"
+  - ./gradlew --version --no-daemon
+  - echo "Building and publishing:"
+  - ./gradlew clean publishToMavenLocal --no-daemon --stacktrace 
