@@ -39,6 +39,43 @@ afterEvaluate {
                 groupId = 'com.github.StudioLapsus'
                 artifactId = 'ffmpeg-kit-android'
                 version = '6.0.6'
+                
+                pom {
+                    name = 'FFmpeg Kit Android'
+                    description = 'FFmpeg Kit for Android applications'
+                    url = 'https://github.com/StudioLapsus/ffmpeg-kit-android'
+                    
+                    licenses {
+                        license {
+                            name = 'GPL-3.0'
+                            url = 'https://www.gnu.org/licenses/gpl-3.0.html'
+                        }
+                    }
+                    
+                    developers {
+                        developer {
+                            id = 'StudioLapsus'
+                            name = 'Studio Lapsus'
+                        }
+                    }
+                    
+                    scm {
+                        connection = 'scm:git:git://github.com/StudioLapsus/ffmpeg-kit-android.git'
+                        developerConnection = 'scm:git:ssh://github.com:StudioLapsus/ffmpeg-kit-android.git'
+                        url = 'https://github.com/StudioLapsus/ffmpeg-kit-android'
+                    }
+                }
+                
+                pom.withXml {
+                    def dependenciesNode = asNode().dependencies[0]
+                    if (dependenciesNode != null) {
+                        // Remove the ffmpeg-kit dependency that has no groupId
+                        def toRemove = dependenciesNode.dependency.findAll { dep ->
+                            dep.artifactId?.text() == 'ffmpeg-kit' && !dep.groupId?.text()
+                        }
+                        toRemove.each { dependenciesNode.remove(it) }
+                    }
+                }
             }
         }
     }
