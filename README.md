@@ -18,7 +18,7 @@ dependencies {
 
 ## Building
 
-1. Copy your built `ffmpeg-kit-full-gpl.aar` to `ffmpeg-kit-full-gpl/libs/`
+1. Copy your built `ffmpeg-kit-android.aar` to `ffmpeg-kit-android/libs/`
 2. Run `./gradlew build`
 3. Create a GitHub release with tag `6.0.0`
 4. JitPack will automatically build and host the dependency

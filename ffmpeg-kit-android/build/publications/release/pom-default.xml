@@ -8,8 +8,8 @@
   <!-- do_not_remove: published-with-gradle-metadata -->
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.StudioLapsus</groupId>
-  <artifactId>ffmpeg-kit-full-gpl</artifactId>
-  <version>6.0.0</version>
+  <artifactId>ffmpeg-kit-android</artifactId>
+  <version>6.0.6</version>
   <packaging>aar</packaging>
   <dependencies>
     <dependency>

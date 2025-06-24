@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="24"
-6-->/Users/louiscapelle/Projects/ffmpeg-kit-android/ffmpeg-kit-full-gpl/src/main/AndroidManifest.xml
+6-->/Users/louiscapelle/Projects/ffmpeg-kit-android/ffmpeg-kit-android/src/main/AndroidManifest.xml
 7        android:targetSdkVersion="32" />
-7-->/Users/louiscapelle/Projects/ffmpeg-kit-android/ffmpeg-kit-full-gpl/src/main/AndroidManifest.xml
+7-->/Users/louiscapelle/Projects/ffmpeg-kit-android/ffmpeg-kit-android/src/main/AndroidManifest.xml
 8
 9</manifest>

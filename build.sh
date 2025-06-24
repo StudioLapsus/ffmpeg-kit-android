@@ -256,7 +256,7 @@ echo "   - ffmpeg-kit-*.aar (FFmpeg Kit library with all dependencies)"
 echo ""
 echo "📦 Preparing GitHub repository structure..."
 GITHUB_REPO_DIR="$OUTPUT_DIR/github-repo"
-mkdir -p "$GITHUB_REPO_DIR/ffmpeg-kit-full-gpl/libs"
+mkdir -p "$GITHUB_REPO_DIR/ffmpeg-kit-android/libs"
 
 # Copy template files from the correct location
 TEMPLATE_DIR="./github-repo-template"
@@ -271,9 +271,9 @@ else
 fi
 
 # Copy the AAR file to the GitHub repo structure
-if [ -f "$OUTPUT_DIR/ffmpeg-kit-full-gpl.aar" ]; then
+if [ -f "$OUTPUT_DIR/ffmpeg-kit-android.aar" ]; then
   echo "📦 Copying AAR to GitHub repo structure..."
-  cp "$OUTPUT_DIR/ffmpeg-kit-full-gpl.aar" "$GITHUB_REPO_DIR/ffmpeg-kit-full-gpl/libs/"
+  cp "$OUTPUT_DIR/ffmpeg-kit-android.aar" "$GITHUB_REPO_DIR/ffmpeg-kit-android/libs/"
   echo "✅ GitHub repository structure ready at: $GITHUB_REPO_DIR"
   echo ""
   echo "🚀 Next steps for GitHub setup:"
