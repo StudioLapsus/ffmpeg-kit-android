@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 24
         targetSdkVersion 32
-        versionCode 600
-        versionName "6.0.0"
+        versionCode 605
+        versionName "6.0.5"
     }
 
     buildTypes {
@@ -38,7 +38,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.StudioLapsus'
                 artifactId = 'ffmpeg-kit-full-gpl'
-                version = '6.0.0'
+                version = '6.0.5'
             }
         }
     }
