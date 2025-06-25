@@ -17,11 +17,7 @@ android {
             minifyEnabled false
         }
     }
-    
-
 }
-
-
 
 dependencies {
     implementation 'com.arthenica:smart-exception-java:0.2.1'
