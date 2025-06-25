@@ -37,7 +37,8 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.release
+                // Use artifact instead of component to avoid metadata issues
+                artifact bundleReleaseAar
                 groupId = 'com.github.StudioLapsus'
                 artifactId = 'ffmpeg-kit-android'
                 version = '6.0.9'
@@ -69,16 +70,30 @@ afterEvaluate {
                 }
                 
                 pom.withXml {
-                    def dependenciesNode = asNode().dependencies[0]
-                    if (dependenciesNode != null) {
-                        // Remove the ffmpeg-kit dependency that has no groupId - it's bundled in the AAR
-                        def toRemove = dependenciesNode.dependency.findAll { dep ->
-                            dep.artifactId?.text() == 'ffmpeg-kit' && !dep.groupId?.text()
-                        }
-                        toRemove.each { dependenciesNode.remove(it) }
-                    }
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    
+                    // Add the required dependencies manually
+                    def smartExceptionJava = dependenciesNode.appendNode('dependency')
+                    smartExceptionJava.appendNode('groupId', 'com.arthenica')
+                    smartExceptionJava.appendNode('artifactId', 'smart-exception-java')
+                    smartExceptionJava.appendNode('version', '0.2.1')
+                    smartExceptionJava.appendNode('scope', 'runtime')
+                    
+                    def smartExceptionCommon = dependenciesNode.appendNode('dependency')
+                    smartExceptionCommon.appendNode('groupId', 'com.arthenica')
+                    smartExceptionCommon.appendNode('artifactId', 'smart-exception-common')
+                    smartExceptionCommon.appendNode('version', '0.2.1')
+                    smartExceptionCommon.appendNode('scope', 'runtime')
                 }
             }
         }
+    }
+    
+    // Disable all module metadata generation
+    tasks.matching { it.name.startsWith('generateMetadataFileFor') }.all {
+        enabled = false
+    }
+    tasks.matching { it.name.startsWith('generatePomFileFor') && !it.name.contains('Release') }.all {
+        enabled = false  
     }
 }
