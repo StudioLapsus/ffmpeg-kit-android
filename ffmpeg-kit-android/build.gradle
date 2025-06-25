@@ -21,14 +21,9 @@ android {
 
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
+
 
 dependencies {
-    api(name: 'ffmpeg-kit', ext: 'aar')
     implementation 'com.arthenica:smart-exception-java:0.2.1'
     implementation 'com.arthenica:smart-exception-common:0.2.1'
 }
@@ -37,8 +32,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                // Use artifact instead of component to avoid metadata issues
-                artifact bundleReleaseAar
+                from components.release
                 groupId = 'com.github.StudioLapsus'
                 artifactId = 'ffmpeg-kit-android'
                 version = '6.0.9'
@@ -70,20 +64,14 @@ afterEvaluate {
                 }
                 
                 pom.withXml {
-                    def dependenciesNode = asNode().appendNode('dependencies')
-                    
-                    // Add the required dependencies manually
-                    def smartExceptionJava = dependenciesNode.appendNode('dependency')
-                    smartExceptionJava.appendNode('groupId', 'com.arthenica')
-                    smartExceptionJava.appendNode('artifactId', 'smart-exception-java')
-                    smartExceptionJava.appendNode('version', '0.2.1')
-                    smartExceptionJava.appendNode('scope', 'runtime')
-                    
-                    def smartExceptionCommon = dependenciesNode.appendNode('dependency')
-                    smartExceptionCommon.appendNode('groupId', 'com.arthenica')
-                    smartExceptionCommon.appendNode('artifactId', 'smart-exception-common')
-                    smartExceptionCommon.appendNode('version', '0.2.1')
-                    smartExceptionCommon.appendNode('scope', 'runtime')
+                    def dependenciesNode = asNode().dependencies[0]
+                    if (dependenciesNode != null) {
+                        // Remove the ffmpeg-kit dependency that has no groupId - classes should be bundled
+                        def toRemove = dependenciesNode.dependency.findAll { dep ->
+                            dep.artifactId?.text() == 'ffmpeg-kit' && !dep.groupId?.text()
+                        }
+                        toRemove.each { dependenciesNode.remove(it) }
+                    }
                 }
             }
         }
