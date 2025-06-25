@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.StudioLapsus</groupId>
   <artifactId>ffmpeg-kit-android</artifactId>
-  <version>6.0.9</version>
+  <version>6.0.11</version>
   <packaging>aar</packaging>
   <name>FFmpeg Kit Android</name>
   <description>FFmpeg Kit for Android applications</description>
